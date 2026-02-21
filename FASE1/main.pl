@@ -35,3 +35,20 @@ do {
         print "Opcion invalida\n";
     }
 } while ($opcion != 0);
+
+#prueba medicamento
+
+use Medicamento;
+ 
+my $m = Medicamento->new({
+    codigo => 'MED001',
+    nombre => 'Paracetamol',
+    principioActivo => 'Paracetamol',
+    laboratorio => 'Lab A',
+    cantidad => 100,
+    fechaVencimiento => '2025-12-31',
+    precio => 10.5,
+    nivelMinimo => 20,
+});
+print "Codigo: " . $m->get_codigo() . "\n";
+print "bajo stock? " . ($m->bajoStock() ? "Si" : "No") . "\n";

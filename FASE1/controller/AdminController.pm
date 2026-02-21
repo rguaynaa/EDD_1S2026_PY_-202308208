@@ -1,6 +1,10 @@
-package AndminController;
+package AdminController;
 use strict;
 use warnings;
+use Inventario;
+use Medicamento;
+
+my $inventario = Inventario->new();
 
 sub menu_admin{
     print "\n=== Menu Administrador ===\n";
@@ -12,11 +16,10 @@ sub menu_admin{
 
     chomp(my $opcion = <STDIN>);
     if ($opcion == 1) {
-        print "Registrar Medicamentos\n";
-        # Aqui se llamaria a la funcion para registrar medicamentos
+        registrar_medicamento();
     }elsif ($opcion == 2) {
         print "Ver Inventario\n";
-        # Aqui se llamaria a la funcion para ver el inventario
+        $inventario->listar();
     }elsif ($opcion == 0) {
         print "Volviendo al menu principal...\n";
     }else {
@@ -25,3 +28,26 @@ sub menu_admin{
     
 }
 
+sub registrar_medicamento{
+    print "Codigo del medicamento: ";
+    chomp(my $codigo = <STDIN>);
+    print "Nombre del medicamento: ";
+    chomp(my $nombre = <STDIN>);
+
+    print "Ingrese la cantidad del medicamento: ";
+    chomp(my $cantidad = <STDIN>);
+
+
+    my $m = Medicamento->new({
+        codigo => $codigo,
+        nombre => $nombre,
+        cantidad => $cantidad,
+        
+    });
+
+    $inventario->insertar($m);
+    print "Medicamento registrado exitosamente\n";
+    
+}
+
+1;
