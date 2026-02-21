@@ -1,0 +1,16 @@
+codigo,nombre,principio_activo,laboratorio,precio_unitario,cantidad,fecha_vencimiento,nivel_minimo
+MED001,Dolorix,Paracetamol,LAB_CaliF1,3.10,250,2026-02-28,80
+MED002,Pastillas,Amoxicilina,LAB_BioGen,14.25,180,2026-08-15,60
+MED003,SanaNada,Ibuprofeno,LAB_CaliF1,5.40,320,2026-10-20,90
+MED004,Tapcin,Omeprazol,LAB_VidaCare,6.80,210,2026-09-30,70
+MED005,Glucorin,Metformina,LAB_Diabetix,4.75,400,2026-11-15,85
+MED006,Jarabe,Ranitidina,LAB_Bueno,7.20,150,2026-03-05,50
+MED007,Presionix,Losartan,LAB_EDDa,9.60,275,2027-01-10,95
+MED008,Colestop,Atorvastatina,LAB_EDDa,17.30,190,2026-10-05,65
+MED009,SanaTodo,Diclofenaco,LAB_CaliF1,4.95,360,2026-08-25,75
+MED010,Ciprolab,Ciprofloxacino,LAB_AntiMuerte,20.40,130,2026-12-20,40
+MED011,Aspirinas,Azitromicina,LAB_Bueno,23.75,145,2026-03-10,55
+MED012,Cardiopril,Captopril,LAB_CardioLife,5.25,310,2027-02-15,90
+MED013,Insunph,InsulinaNPH,LAB_vidaYmuerte,130.00,120,2026-06-30,30
+MED014,Dolorina,InsulinaHumana,LAB_Diabetix,142.50,110,2026-06-30,25
+MED015,Respiflow,Salbutamol,LAB_RespiraPlus,48.90,290,2026-10-15,70

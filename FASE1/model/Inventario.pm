@@ -62,9 +62,22 @@ sub listar{
 
     while($actual){
         my $m= $actual->get_dato();
+        print "-------------------------\n";
+        print "--------Inventario-------\n";
         print "Codigo: " . $m->get_codigo() . "\n";
         print "Nombre: " . $m->get_nombre() . "\n";
+        print "Principio activo: " . $m->get_principioActivo() . "\n";
+        print "Laboratorio: " . $m->get_laboratorio() . "\n";
         print "cantidad: " . $m->get_cantidad() . "\n";
+        print "Fecha de vencimiento: " . $m->get_fechaVencimiento() . "\n";
+        print "Precio: " . $m->get_precio() . "\n";
+        print "Nivel minimo: " . $m->get_nivelMinimo() . "\n";
+
+        if ($m->bajo_stock()) {
+            print "precaucion Bajo stock\n";
+        }
+
+        print "---------------------------\n";
 
         $actual = $actual->get_siguiente();
 
@@ -83,6 +96,43 @@ sub  buscar{
     }
     return undef; #no encontrado
 
+}
+
+sub buscar_por_nombre{
+    my ($self, $nombre) = @_;
+    my $actual = $self->{primero};
+
+    while($actual){
+        my $m= $actual->get_dato();
+        if(lc($m->get_nombre()) eq lc($nombre)){
+            return $m;
+        }
+        $actual = $actual->get_siguiente();
+    }
+    return undef; #no encontrado
+}
+
+#filtar por laboratorio
+sub listar_por_laboratorio {
+    my ($self, $laboratorio) = @_;
+    my $actual = $self->{primero};
+    my $encontrado = 0;
+
+    print "\n--- INVENTARIO POR LABORATORIO: $laboratorio ---\n";
+
+    while ($actual) {
+        my $m = $actual->get_dato();
+        if (lc($m->get_laboratorio()) eq lc($laboratorio)) {
+            print "Codigo: ", $m->get_codigo(),
+                  " | Nombre: ", $m->get_nombre(),
+                  " | Precio: Q", $m->get_precio(),
+                  " | Cantidad: ", $m->get_cantidad(), "\n";
+            $encontrado = 1;
+        }
+        $actual = $actual->get_siguiente();
+    }
+
+    print "No hay medicamentos de ese laboratorio.\n" unless $encontrado;
 }
 
 

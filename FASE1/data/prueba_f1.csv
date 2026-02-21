@@ -1,0 +1,20 @@
+codigo,nombre,principio_activo,laboratorio,precio_unitario,cantidad,fecha_vencimiento,nivel_minimo
+MED001,Tylenol,Paracetamol,LabFarma,2.50,5000,2026-12-31,500
+MED002,Amoxil,Amoxicilina,MediPharma,12.50,3000,2026-08-15,300
+MED003,Advil,Ibuprofeno,GenericLab,4.20,4500,2026-10-20,450
+MED004,Prilosec,Omeprazol,LabFarma,5.75,3500,2026-09-30,400
+MED005,Glucophage,Metformina,BioFarma,3.90,6000,2026-11-15,600
+MED006,Zantac,Ranitidina,GenericLab,6.30,2800,2026-07-20,350
+MED007,Cozaar,Losartán,CardioMed,8.20,4000,2027-01-10,450
+MED008,Lipitor,Atorvastatina,CardioMed,15.80,2500,2026-10-05,300
+MED009,Voltaren,Diclofenaco,GenericLab,3.75,5500,2026-08-25,500
+MED010,Cipro,Ciprofloxacino,AntibioLab,18.50,1800,2026-12-20,250
+MED011,Zithromax,Azitromicina,AntibioLab,22.00,1500,2026-11-30,200
+MED012,Capoten,Captopril,CardioMed,4.10,3200,2027-02-15,400
+MED013,Humulina N,Insulina NPH,DiabetPharma,125.00,800,2026-06-30,100
+MED014,Humulina R,Insulina Humana,DiabetPharma,135.00,750,2026-06-30,100
+MED015,Proventil,Salbutamol,RespiraLab,45.50,1200,2026-10-15,150
+MED016,Zocor,Simvastatina,LabFarma,12.30,3800,2026-12-10,400
+MED017,Vasotec,Enalapril,BioFarma,5.20,4500,2027-01-05,500
+MED018,Klonopin,Clonazepam,NeuroPharma,8.90,2000,2026-09-10,250
+MED019,Euthyrox,Levotiroxina,EndocrinoLab,6.75,3500,2026-11-20,400
