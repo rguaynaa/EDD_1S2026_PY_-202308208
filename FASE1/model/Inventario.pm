@@ -73,7 +73,7 @@ sub listar{
         print "Precio: " . $m->get_precio() . "\n";
         print "Nivel minimo: " . $m->get_nivelMinimo() . "\n";
 
-        if ($m->bajo_stock()) {
+        if ($m->bajoStock()) {
             print "precaucion Bajo stock\n";
         }
 
