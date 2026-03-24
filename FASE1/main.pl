@@ -5,9 +5,14 @@ use warnings;
 use FindBin;
 use lib "$FindBin::Bin/model";
 use lib "$FindBin::Bin/controller";
+use lib "$FindBin::Bin/reports";
 
 use AdminController;
 use UsuarioController;
+use ProveedorController;
+use ReporteInventario;
+use ReporteSolicitudes;
+use ReporteProveedores;
 
 sub menu_principal {
     print "\n=== EDD MedTrack ===\n";

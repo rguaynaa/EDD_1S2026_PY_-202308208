@@ -1,9 +1,14 @@
 package UsuarioController;
 use strict;
 use warnings;
-use Inventario;
 
+use Solicitud;
+use Inventario;
+use ListaSolicitudes;
+
+my $idSolicitud = 1;
 my $inventario = Inventario->new();
+my $listaSolicitudes = ListaSolicitudes->new();
 
 sub menu_usuario{
     print "\n=== Menu Usuario ===\n";
@@ -44,9 +49,32 @@ sub mostrar_medicamento_usuario {
     print "Nombre: ", $m->get_nombre(), "\n";
     print "Cantidad disponible: ", $m->get_cantidad(), "\n";
 
-    if ($m->bajo_stock()) {
+    if ($m->bajoStock()) {
         print "⏳ En proceso de reabastecimiento\n";
     }
 }
 
+sub crear_solicitud {
+    print "departamento: ";
+    chomp(my $dep = <STDIN>);
+    print "codigo medicamento: ";
+    chomp(my $cod = <STDIN>);
+    print "cantidad: ";
+    chomp(my $cant = <STDIN>);
+    print "prioridad (urgente/alta/media/baja): ";
+    chomp(my $pri = <STDIN>);
+
+    my $solicitud = Solicitud->new(
+        id => $idSolicitud++,
+        departamento => $dep,
+        codigoMed => $cod,
+        cantidad => $cant,
+        prioridad => $pri,
+        fecha => localtime(),
+    );
+
+    $listaSolicitudes->agregar($solicitud);
+    print "Solicitud creada con ID: ", $solicitud->get_id(), " correctamente\n";
+
+}
 1;

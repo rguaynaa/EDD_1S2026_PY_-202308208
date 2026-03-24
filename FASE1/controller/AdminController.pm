@@ -1,10 +1,13 @@
 package AdminController;
 use strict;
 use warnings;
+
+use ListaSolicitudes;
 use Inventario;
 use Medicamento;
 use Text::CSV;
 
+my $listaSolicitudes = ListaSolicitudes->new();
 my $inventario = Inventario->new();
 
 sub menu_admin{
@@ -15,6 +18,7 @@ sub menu_admin{
     print "4. Buscar medicamento por nombre\n";
     print "5. Ver inventario por laboratorio\n";
     print "6. Carga masiva CSV\n";
+    print "7. Ver solicitudes\n";
     print "0. Volver al menu principal\n";
     print "Seleccione una opcion: ";
 
@@ -28,12 +32,12 @@ sub menu_admin{
     }elsif ($opcion == 3) {
         print "Codigo: ";
         chomp(my $c = <STDIN>);
-        my $me=$inventario-> Buscar($c);
+        my $me = $inventario->buscar($c);
         mostrar_medicamento($me);
     }elsif ($opcion == 4) {
         print "Nombre: ";
         chomp(my $n = <STDIN>);
-        my $me=$inventario-> Buscar_por_nombre($n);
+        my $me = $inventario->buscar_por_nombre($n);
         mostrar_medicamento($me);
     
     }elsif ($opcion == 5) {
@@ -44,6 +48,8 @@ sub menu_admin{
         cargar_csv();
     }elsif ($opcion == 0) {
         print "Volviendo al menu principal...\n";
+    }elsif ($opcion == 7) {
+        print "Solicitudes registradas: ";
     }else {
         print "Opcion invalida\n";
     }
@@ -122,7 +128,7 @@ sub mostrar_medicamento {
     print "Precio: Q", $m->get_precio(), "\n";
     print "Vence: ", $m->get_fechaVencimiento(), "\n";
 
-    if ($m->bajo_stock()) {
+    if ($m->bajoStock()) {
         print "⚠ ALERTA: Bajo stock\n";
     }
 }
@@ -213,6 +219,37 @@ sub cargar_csv {
     print "\nCarga CSV finalizada\n";
     print "Insertados: $insertados\n";
     print "Omitidos:   $omitidos\n";
+}
+
+#manejo de solicitudes
+sub procesar_solicitudes{
+    my $nodo = $listaSolicitudes->obtener_primera();
+    if(!$nodo){
+        print "No hay solicitudes pendientes.\n";
+        return;
+    }
+
+    my $solicitud = $nodo->get_dato();
+
+    print "\n--- Procesar Solicitud ---\n";
+    print "ID: " , $solicitud->get_id() . "\n";
+    print "Departamento: " , $solicitud->get_departamento() . "\n";
+    print "Medicamento: " , $solicitud->get_codigoMed() . "\n";
+    print "Cantidad: " , $solicitud->get_cantidad() . "\n";
+    print "Prioridad: " , $solicitud->get_prioridad() . "\n";
+    print "Total de pendientes: " , $listaSolicitudes->total() . "\n";
+
+    print "1. Aprobar\n2. Rechazar\nOpcion: ";
+chomp(my $op=<STDIN>);
+
+    if($op == 1){
+        $solicitud->aprobar();
+        print "Solicitud aprobada.\n";
+    }elsif($op == 2){
+        $solicitud->rechazar();
+        print "Solicitud rechazada.\n";
+    }
+    $listaSolicitudes->eliminar_primera();
 }
 
 1;
