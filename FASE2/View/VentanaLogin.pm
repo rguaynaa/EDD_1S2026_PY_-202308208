@@ -1,7 +1,17 @@
 package VentanaLogin;
 use strict;
 use warnings;
-use Gtk3;
+
+use Gtk3 -init;
+use Glib::Object::Introspection;
+
+Glib::Object::Introspection->setup(
+    basename => 'Gdk',
+    version  => '3.0',
+    package  => 'Gdk3'
+);
+
+
 use Estado;
 
 # Credenciales del administrador (segun enunciado)
@@ -38,8 +48,8 @@ sub _construir {
         notebook tab { background-color: #2c3e6b; color: white; padding: 6px 12px; }
         notebook tab:checked { background-color: #e67e22; }
     ');
-    Gtk3::StyleContext::add_provider_for_screen(
-        Gdk3::Screen::get_default(),
+    Gtk3::StyleContext::add_provider_for_display(
+        Gdk3::Display->get_default(),
         $css,
         Gtk3::STYLE_PROVIDER_PRIORITY_APPLICATION
     );
