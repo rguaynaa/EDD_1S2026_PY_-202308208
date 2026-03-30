@@ -1,0 +1,179 @@
+{
+  "proveedor": [
+    {
+      "nit": "98765432-1",
+      "nombre": "Juanito proveedor",
+      "telefono": "2245 6789",
+      "direccion": "Zona 9, Ciudad de Guatemala",
+      "fecha_entrega": "2026-03-15",
+      "numero_factura": "FAC-2026-00145",
+      "entrega": [
+        {
+          "tipo": "MEDICAMENTO",
+          "codigo": "MED001",
+          "nombre": "Tylenol",
+          "principio_activo": "Paracetamol",
+          "fabricante": "LabFarma",
+          "precio_unitario": 2.50,
+          "cantidad": 5000,
+          "fecha_vencimiento": "2026-12-31",
+          "nivel_minimo": 500
+        },
+        {
+          "tipo": "EQUIPO",
+          "codigo": "EQU001",
+          "nombre": "Tensiómetro Digital",
+          "fabricante": "MediSupplyGT",
+          "precio_unitario": 350.00,
+          "cantidad": 25,
+          "fecha_ingreso": "2026-03-15",
+          "nivel_minimo": 5
+        },
+        {
+          "tipo": "SUMINISTRO",
+          "codigo": "SUM001",
+          "nombre": "Guantes de Nitrilo Talla M",
+          "fabricante": "MediSupplyGT",
+          "precio_unitario": 0.15,
+          "cantidad": 50000,
+          "fecha_vencimiento": "2028-01-01",
+          "nivel_minimo": 5000
+        }
+      ]
+    },
+    {
+      "nit": "12345678-9",
+      "nombre": "Benito proveedor",
+      "telefono": "2245 6789",
+      "direccion": "Zona 9, Ciudad de Guatemala",
+      "fecha_entrega": "2026-03-15",
+      "numero_factura": "FAC-2026-00146",
+      "entrega": [
+        {
+          "tipo": "MEDICAMENTO",
+          "codigo": "MED009",
+          "nombre": "Voltaren",
+          "principio_activo": "Diclofenaco",
+          "fabricante": "GenericLab",
+          "precio_unitario": 3.75,
+          "cantidad": 5500,
+          "fecha_vencimiento": "2026-08-25",
+          "nivel_minimo": 500
+        },
+        {
+          "tipo": "EQUIPO",
+          "codigo": "EQU002",
+          "nombre": "Oxímetro de Pulso",
+          "fabricante": "BuenaVidaGT",
+          "precio_unitario": 180.00,
+          "cantidad": 40,
+          "fecha_ingreso": "2026-03-15",
+          "nivel_minimo": 8
+        },
+        {
+          "tipo": "SUMINISTRO",
+          "codigo": "SUM002",
+          "nombre": "Jeringas 5ml",
+          "fabricante": "DeTodo",
+          "precio_unitario": 0.30,
+          "cantidad": 20000,
+          "fecha_vencimiento": "2029-06-30",
+          "nivel_minimo": 3000
+        },
+        {
+          "tipo": "MEDICAMENTO",
+          "codigo": "MED002",
+          "nombre": "Amoxil",
+          "principio_activo": "Amoxicilina",
+          "fabricante": "LabFarma",
+          "precio_unitario": 4.50,
+          "cantidad": 3000,
+          "fecha_vencimiento": "2027-01-15",
+          "nivel_minimo": 300
+        },
+        {
+          "tipo": "EQUIPO",
+          "codigo": "EQU003",
+          "nombre": "Estetoscopio",
+          "fabricante": "MediSupplyGT",
+          "precio_unitario": 220.00,
+          "cantidad": 30,
+          "fecha_ingreso": "2026-03-15",
+          "nivel_minimo": 5
+        },
+        {
+          "tipo": "SUMINISTRO",
+          "codigo": "SUM003",
+          "nombre": "Mascarillas N95",
+          "fabricante": "ProSaludGT",
+          "precio_unitario": 2.50,
+          "cantidad": 10000,
+          "fecha_vencimiento": "2028-06-30",
+          "nivel_minimo": 1000
+        }
+      ]
+    },
+    {
+      "nit": "55566677-8",
+      "nombre": "MedDistrib SA",
+      "telefono": "2334 5566",
+      "direccion": "Zona 4, Ciudad de Guatemala",
+      "fecha_entrega": "2026-03-20",
+      "numero_factura": "FAC-2026-00200",
+      "entrega": [
+        {
+          "tipo": "MEDICAMENTO",
+          "codigo": "MED003",
+          "nombre": "Lipitor",
+          "principio_activo": "Atorvastatina",
+          "fabricante": "CardioMed",
+          "precio_unitario": 15.80,
+          "cantidad": 2500,
+          "fecha_vencimiento": "2026-10-05",
+          "nivel_minimo": 300
+        },
+        {
+          "tipo": "MEDICAMENTO",
+          "codigo": "MED004",
+          "nombre": "Prilosec",
+          "principio_activo": "Omeprazol",
+          "fabricante": "GenericLab",
+          "precio_unitario": 5.75,
+          "cantidad": 3500,
+          "fecha_vencimiento": "2026-09-30",
+          "nivel_minimo": 400
+        },
+        {
+          "tipo": "EQUIPO",
+          "codigo": "EQU004",
+          "nombre": "Termómetro Digital",
+          "fabricante": "BuenaVidaGT",
+          "precio_unitario": 85.00,
+          "cantidad": 50,
+          "fecha_ingreso": "2026-03-20",
+          "nivel_minimo": 10
+        },
+        {
+          "tipo": "SUMINISTRO",
+          "codigo": "SUM004",
+          "nombre": "Gasas Estériles 10x10",
+          "fabricante": "ProSaludGT",
+          "precio_unitario": 0.50,
+          "cantidad": 30000,
+          "fecha_vencimiento": "2029-01-01",
+          "nivel_minimo": 5000
+        },
+        {
+          "tipo": "SUMINISTRO",
+          "codigo": "SUM005",
+          "nombre": "Vendas Elásticas",
+          "fabricante": "DeTodo",
+          "precio_unitario": 1.20,
+          "cantidad": 8000,
+          "fecha_vencimiento": "2030-01-01",
+          "nivel_minimo": 1000
+        }
+      ]
+    }
+  ]
+}

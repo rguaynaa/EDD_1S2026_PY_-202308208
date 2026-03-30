@@ -2,64 +2,59 @@ package AdminController;
 use strict;
 use warnings;
 
-use ListaSolicitudes;
-use Inventario;
+use Estado;
 use Medicamento;
-use Text::CSV;
+use Proveedor;
 
-my $listaSolicitudes = ListaSolicitudes->new();
-my $inventario = Inventario->new();
+# ---------------------------------------------------------------
+# Obtenemos el estado compartido (singleton)
+# ---------------------------------------------------------------
+my $estado = Estado->get_instancia();
 
-sub menu_admin{
-    print "\n=== Menu Administrador ===\n";
-    print "1. Registrar Medicamentos\n";
-    print "2. Ver Inventrario\n";
-    print "3. Buscar medicamento por codigo\n";
-    print "4. Buscar medicamento por nombre\n";
-    print "5. Ver inventario por laboratorio\n";
-    print "6. Carga masiva CSV\n";
-    print "7. Ver solicitudes\n";
-    print "0. Volver al menu principal\n";
-    print "Seleccione una opcion: ";
+# ---------------------------------------------------------------
+# MENU PRINCIPAL DEL ADMINISTRADOR
+# ---------------------------------------------------------------
+sub menu {
+    my $opcion = '';
+    do {
+        print "\n" . "=" x 40 . "\n";
+        print "       MENU ADMINISTRADOR\n";
+        print "=" x 40 . "\n";
+        print "1. Registrar medicamento\n";
+        print "2. Carga masiva CSV\n";
+        print "3. Ver inventario completo\n";
+        print "4. Buscar medicamento por codigo\n";
+        print "5. Buscar medicamento por nombre\n";
+        print "6. Consultar por laboratorio\n";
+        print "7. Gestionar proveedores\n";
+        print "8. Procesar solicitudes de reabastecimiento\n";
+        print "9. Reportes Graphviz\n";
+        print "0. Salir\n";
+        print "Opcion: ";
+        chomp($opcion = <STDIN>);
 
+        if    ($opcion eq '1') { _registrar_medicamento()      }
+        elsif ($opcion eq '2') { _cargar_csv()                 }
+        elsif ($opcion eq '3') { $estado->inventario->listar() }
+        elsif ($opcion eq '4') { _buscar_por_codigo()          }
+        elsif ($opcion eq '5') { _buscar_por_nombre()          }
+        elsif ($opcion eq '6') { _consultar_laboratorio()      }
+        elsif ($opcion eq '7') { _menu_proveedores()           }
+        elsif ($opcion eq '8') { _procesar_solicitudes()       }
+        elsif ($opcion eq '9') { _menu_reportes()              }
+        elsif ($opcion eq '0') { print "Cerrando sesion...\n"  }
+        else                   { print "Opcion invalida.\n"    }
 
-    chomp(my $opcion = <STDIN>);
-    if ($opcion == 1) {
-        registrar_medicamento();
-    }elsif ($opcion == 2) {
-        print "Ver Inventario\n";
-        $inventario->listar();
-    }elsif ($opcion == 3) {
-        print "Codigo: ";
-        chomp(my $c = <STDIN>);
-        my $me = $inventario->buscar($c);
-        mostrar_medicamento($me);
-    }elsif ($opcion == 4) {
-        print "Nombre: ";
-        chomp(my $n = <STDIN>);
-        my $me = $inventario->buscar_por_nombre($n);
-        mostrar_medicamento($me);
-    
-    }elsif ($opcion == 5) {
-        print "Laboratorio: ";
-        chomp(my $l = <STDIN>);
-        $inventario->listar_por_laboratorio($l);
-    }elsif ($opcion == 6) {
-        cargar_csv();
-    }elsif ($opcion == 0) {
-        print "Volviendo al menu principal...\n";
-    }elsif ($opcion == 7) {
-        print "Solicitudes registradas: ";
-    }else {
-        print "Opcion invalida\n";
-    }
-    
+    } while ($opcion ne '0');
 }
 
-sub registrar_medicamento {
-    print "\n--- Registro de Medicamento ---\n";
+# ---------------------------------------------------------------
+# 1. REGISTRAR MEDICAMENTO
+# ---------------------------------------------------------------
+sub _registrar_medicamento {
+    print "\n--- Registrar Medicamento ---\n";
 
-    print "Codigo: ";
+    print "Codigo (ej: MED001): ";
     chomp(my $codigo = <STDIN>);
 
     print "Nombre comercial: ";
@@ -68,7 +63,7 @@ sub registrar_medicamento {
     print "Principio activo: ";
     chomp(my $principio = <STDIN>);
 
-    print "Laboratorio: ";
+    print "Laboratorio fabricante: ";
     chomp(my $laboratorio = <STDIN>);
 
     print "Cantidad en stock: ";
@@ -77,25 +72,27 @@ sub registrar_medicamento {
     print "Fecha de vencimiento (YYYY-MM-DD): ";
     chomp(my $fecha = <STDIN>);
 
-    print "Precio unitario: ";
+    print "Precio unitario (Q): ";
     chomp(my $precio = <STDIN>);
 
     print "Nivel minimo de reorden: ";
     chomp(my $nivel = <STDIN>);
 
-    # Validaciones básicas
-    if ($codigo eq "" || $nombre eq "" || $cantidad !~ /^\d+$/) {
-        print "Datos invalidos. Operacion cancelada.\n";
+    # Validaciones
+    if ($codigo eq '' || $nombre eq '') {
+        print "Error: codigo y nombre son obligatorios.\n";
+        return;
+    }
+    unless ($cantidad =~ /^\d+$/ && $nivel =~ /^\d+$/) {
+        print "Error: cantidad y nivel minimo deben ser numeros enteros.\n";
+        return;
+    }
+    unless ($precio =~ /^\d+(\.\d+)?$/) {
+        print "Error: precio invalido.\n";
         return;
     }
 
-    # Evitar medicamentos duplicados
-    if ($inventario->buscar($codigo)) {
-        print "Error: ya existe un medicamento con ese codigo.\n";
-        return;
-    }
-
-    my $me = Medicamento->new({
+    my $med = Medicamento->new({
         codigo           => $codigo,
         nombre           => $nombre,
         principioActivo  => $principio,
@@ -103,153 +100,322 @@ sub registrar_medicamento {
         cantidad         => $cantidad,
         fechaVencimiento => $fecha,
         precio           => $precio,
-        nivelMinimo      => $nivel
+        nivelMinimo      => $nivel,
     });
 
-    $inventario->insertar($me);
+    $estado->inventario->insertar($med);
+
+    # Actualizar matriz dispersa automaticamente
+    $estado->matriz->insertar($laboratorio, $nombre, {
+        precio    => $precio,
+        cantidad  => $cantidad,
+        principio => $principio,
+    });
 
     print "Medicamento registrado exitosamente.\n";
 }
 
-sub mostrar_medicamento {
-    my ($m) = @_;
-
-    if (!$m) {
-        print "Medicamento no encontrado.\n";
-        return;
-    }
-
-    print "\n--- MEDICAMENTO ---\n";
-    print "Codigo: ", $m->get_codigo(), "\n";
-    print "Nombre: ", $m->get_nombre(), "\n";
-    print "Principio activo: ", $m->get_principioActivo(), "\n";
-    print "Laboratorio: ", $m->get_laboratorio(), "\n";
-    print "Cantidad: ", $m->get_cantidad(), "\n";
-    print "Precio: Q", $m->get_precio(), "\n";
-    print "Vence: ", $m->get_fechaVencimiento(), "\n";
-
-    if ($m->bajoStock()) {
-        print "⚠ ALERTA: Bajo stock\n";
-    }
-}
-
-
-
-sub trim {
-    my ($v) = @_;
-    return "" unless defined $v;
-    $v =~ s/^\s+|\s+$//g;
-    $v =~ s/\x{FEFF}//g; # BOM
-    return $v;
-}
-
-sub cargar_csv {
+# ---------------------------------------------------------------
+# 2. CARGA MASIVA CSV
+# ---------------------------------------------------------------
+sub _cargar_csv {
     print "\nRuta del archivo CSV: ";
     chomp(my $ruta = <STDIN>);
 
     unless (-e $ruta) {
-        print "Error: el archivo no existe.\n";
+        print "Error: el archivo no existe en: $ruta\n";
         return;
     }
 
-    open my $fh, "<", $ruta or do {
+    open my $fh, "<:encoding(UTF-8)", $ruta or do {
         print "No se pudo abrir el archivo.\n";
         return;
     };
 
-    my $csv = Text::CSV->new({
-        binary    => 1,
-        auto_diag => 1,
-        sep_char  => ','
-    });
-
-    my $linea = 0;
+    my $linea     = 0;
     my $insertados = 0;
-    my $omitidos = 0;
+    my $omitidos   = 0;
 
-    while (my $row = $csv->getline($fh)) {
+    while (my $row = <$fh>) {
+        chomp $row;
+        $row =~ s/\r//g;          # quitar \r de Windows
+        $row =~ s/^\x{FEFF}//;    # quitar BOM si existe
         $linea++;
-        next if $linea == 1; # encabezado
 
-        my (
-            $codigo,
-            $nombre,
-            $principio,
-            $laboratorio,
-            $precio,
-            $cantidad,
-            $fecha,
-            $nivel
-        ) = map { trim($_) } @$row;
+        next if $linea == 1;      # saltar encabezado
 
-        # Validaciones
-        unless (
-            $codigo &&
-            $nombre &&
-            $cantidad =~ /^\d+$/ &&
-            $precio   =~ /^\d+(\.\d+)?$/ &&
-            $nivel    =~ /^\d+$/
-        ) {
+        my ($codigo, $nombre, $principio, $laboratorio,
+            $precio, $cantidad, $fecha, $nivel) = split /,/, $row;
+
+        # Limpiar espacios
+        for ($codigo, $nombre, $principio, $laboratorio,
+             $precio, $cantidad, $fecha, $nivel) {
+            $_ = _trim($_) if defined $_;
+        }
+
+        # Validar campos obligatorios
+        unless (defined $codigo && $codigo ne '' &&
+                defined $nombre && $nombre ne '' &&
+                defined $cantidad && $cantidad =~ /^\d+$/ &&
+                defined $precio   && $precio   =~ /^\d+(\.\d+)?$/ &&
+                defined $nivel    && $nivel    =~ /^\d+$/) {
+            print "Linea $linea omitida: datos invalidos\n";
             $omitidos++;
             next;
         }
 
-        if ($inventario->buscar($codigo)) {
+        # Evitar duplicados
+        if ($estado->inventario->buscar($codigo)) {
+            print "Linea $linea omitida: codigo $codigo ya existe\n";
             $omitidos++;
             next;
         }
 
-        my $me = Medicamento->new({
+        my $med = Medicamento->new({
             codigo           => $codigo,
             nombre           => $nombre,
-            principioActivo  => $principio,
-            laboratorio      => $laboratorio,
+            principioActivo  => $principio  // '',
+            laboratorio      => $laboratorio // '',
             precio           => $precio,
             cantidad         => $cantidad,
-            fechaVencimiento => $fecha,
-            nivelMinimo      => $nivel
+            fechaVencimiento => $fecha       // '',
+            nivelMinimo      => $nivel,
         });
 
-        $inventario->insertar($me);
+        $estado->inventario->insertar($med);
+
+        # Actualizar matriz dispersa
+        $estado->matriz->insertar($laboratorio // '', $nombre, {
+            precio    => $precio,
+            cantidad  => $cantidad,
+            principio => $principio // '',
+        });
+
         $insertados++;
     }
 
     close $fh;
 
-    print "\nCarga CSV finalizada\n";
-    print "Insertados: $insertados\n";
-    print "Omitidos:   $omitidos\n";
+    print "\nCarga finalizada:\n";
+    print "  Insertados : $insertados\n";
+    print "  Omitidos   : $omitidos\n";
+    print "  Total filas: " . ($linea - 1) . "\n";
 }
 
-#manejo de solicitudes
-sub procesar_solicitudes{
-    my $nodo = $listaSolicitudes->obtener_primera();
-    if(!$nodo){
+# ---------------------------------------------------------------
+# 4. BUSCAR POR CODIGO
+# ---------------------------------------------------------------
+sub _buscar_por_codigo {
+    print "Codigo: ";
+    chomp(my $codigo = <STDIN>);
+
+    my $m = $estado->inventario->buscar($codigo);
+    _mostrar_medicamento($m);
+}
+
+# ---------------------------------------------------------------
+# 5. BUSCAR POR NOMBRE
+# ---------------------------------------------------------------
+sub _buscar_por_nombre {
+    print "Nombre: ";
+    chomp(my $nombre = <STDIN>);
+
+    my $m = $estado->inventario->buscar_por_nombre($nombre);
+    _mostrar_medicamento($m);
+}
+
+# ---------------------------------------------------------------
+# 6. CONSULTAR POR LABORATORIO (usa la matriz dispersa)
+# ---------------------------------------------------------------
+sub _consultar_laboratorio {
+    print "Nombre del medicamento a comparar: ";
+    chomp(my $med = <STDIN>);
+    $estado->matriz->consultar_por_medicamento($med);
+}
+
+# ---------------------------------------------------------------
+# 7. MENU PROVEEDORES
+# ---------------------------------------------------------------
+sub _menu_proveedores {
+    my $op = '';
+    do {
+        print "\n--- Gestion de Proveedores ---\n";
+        print "1. Registrar proveedor\n";
+        print "2. Registrar entrega de proveedor\n";
+        print "3. Ver todos los proveedores\n";
+        print "0. Volver\n";
+        print "Opcion: ";
+        chomp($op = <STDIN>);
+
+        if    ($op eq '1') { _registrar_proveedor()  }
+        elsif ($op eq '2') { _registrar_entrega()    }
+        elsif ($op eq '3') { $estado->proveedores->listar() }
+        elsif ($op eq '0') { }
+        else               { print "Opcion invalida.\n" }
+    } while ($op ne '0');
+}
+
+sub _registrar_proveedor {
+    print "\n--- Nuevo Proveedor ---\n";
+    print "NIT: ";          chomp(my $nit  = <STDIN>);
+    print "Nombre: ";       chomp(my $nom  = <STDIN>);
+    print "Contacto: ";     chomp(my $con  = <STDIN>);
+    print "Telefono: ";     chomp(my $tel  = <STDIN>);
+    print "Direccion: ";    chomp(my $dir  = <STDIN>);
+
+    if ($nit eq '' || $nom eq '') {
+        print "Error: NIT y nombre son obligatorios.\n";
+        return;
+    }
+
+    my $prov = Proveedor->new({
+        nit      => $nit,
+        nombre   => $nom,
+        contacto => $con,
+        telefono => $tel,
+        direccion => $dir,
+    });
+
+    my $ok = $estado->proveedores->agregar($prov);
+    print $ok ? "Proveedor registrado.\n" : "Error: NIT ya registrado.\n";
+}
+
+sub _registrar_entrega {
+    print "\nNIT del proveedor: ";
+    chomp(my $nit = <STDIN>);
+
+    my $prov = $estado->proveedores->buscar_por_nit($nit);
+    unless ($prov) {
+        print "Proveedor no encontrado.\n";
+        return;
+    }
+
+    print "Fecha de entrega (YYYY-MM-DD): "; chomp(my $fecha   = <STDIN>);
+    print "Numero de factura: ";              chomp(my $factura = <STDIN>);
+    print "Codigo de medicamento: ";          chomp(my $cod_med = <STDIN>);
+    print "Cantidad entregada: ";             chomp(my $cant    = <STDIN>);
+
+    unless ($cant =~ /^\d+$/) {
+        print "Cantidad invalida.\n";
+        return;
+    }
+
+    # Registrar entrega en el proveedor
+    $prov->agregar_entrega({
+        fecha     => $fecha,
+        factura   => $factura,
+        codigo_med => $cod_med,
+        cantidad  => $cant,
+    });
+
+    # Actualizar stock en el inventario
+    my $med = $estado->inventario->buscar($cod_med);
+    if ($med) {
+        my $nueva_cant = $med->get_cantidad() + $cant;
+        $med->set_cantidad($nueva_cant);
+        print "Stock actualizado. Nueva cantidad: $nueva_cant\n";
+    } else {
+        print "Advertencia: medicamento $cod_med no encontrado en inventario.\n";
+    }
+
+    print "Entrega registrada para: " . $prov->get_nombre() . "\n";
+}
+
+# ---------------------------------------------------------------
+# 8. PROCESAR SOLICITUDES
+# ---------------------------------------------------------------
+sub _procesar_solicitudes {
+    if ($estado->solicitudes->esta_vacia()) {
         print "No hay solicitudes pendientes.\n";
         return;
     }
 
-    my $solicitud = $nodo->get_dato();
+    my $op = '';
+    do {
+        my $s = $estado->solicitudes->ver_primera();
+        unless ($s) { last }
 
-    print "\n--- Procesar Solicitud ---\n";
-    print "ID: " , $solicitud->get_id() . "\n";
-    print "Departamento: " , $solicitud->get_departamento() . "\n";
-    print "Medicamento: " , $solicitud->get_codigoMed() . "\n";
-    print "Cantidad: " , $solicitud->get_cantidad() . "\n";
-    print "Prioridad: " , $solicitud->get_prioridad() . "\n";
-    print "Total de pendientes: " , $listaSolicitudes->total() . "\n";
+        print "\n--- Solicitud Pendiente ---\n";
+        print $s->to_string() . "\n";
+        print "Total pendientes: " . $estado->solicitudes->get_tamanio() . "\n";
+        print "\n1. Aprobar\n2. Rechazar\n0. Volver\nOpcion: ";
+        chomp($op = <STDIN>);
 
-    print "1. Aprobar\n2. Rechazar\nOpcion: ";
-chomp(my $op=<STDIN>);
+        if ($op eq '1') {
+            # Verificar stock suficiente
+            my $med = $estado->inventario->buscar($s->get_codigo_med());
+            if (!$med) {
+                print "Medicamento no encontrado en inventario.\n";
+            } elsif ($med->get_cantidad() < $s->get_cantidad()) {
+                print "Stock insuficiente. Disponible: " . $med->get_cantidad() . "\n";
+            } else {
+                my $nueva_cant = $med->get_cantidad() - $s->get_cantidad();
+                $med->set_cantidad($nueva_cant);
+                $s->set_estado('aprobada');
+                $estado->solicitudes->eliminar_primera();
+                print "Solicitud aprobada. Stock actualizado: $nueva_cant\n";
+            }
+        } elsif ($op eq '2') {
+            $s->set_estado('rechazada');
+            $estado->solicitudes->eliminar_primera();
+            print "Solicitud rechazada y eliminada.\n";
+        } elsif ($op eq '0') {
+            # volver
+        } else {
+            print "Opcion invalida.\n";
+        }
 
-    if($op == 1){
-        $solicitud->aprobar();
-        print "Solicitud aprobada.\n";
-    }elsif($op == 2){
-        $solicitud->rechazar();
-        print "Solicitud rechazada.\n";
+    } while ($op ne '0' && !$estado->solicitudes->esta_vacia());
+
+    print "No quedan solicitudes pendientes.\n" if $estado->solicitudes->esta_vacia();
+}
+
+# ---------------------------------------------------------------
+# 9. MENU REPORTES
+# ---------------------------------------------------------------
+sub _menu_reportes {
+    my $op = '';
+    do {
+        print "\n--- Reportes Graphviz ---\n";
+        print "1. Reporte inventario (lista doble)\n";
+        print "2. Reporte solicitudes (lista circular doble)\n";
+        print "3. Reporte proveedores (lista circular)\n";
+        print "4. Reporte matriz dispersa\n";
+        print "0. Volver\n";
+        print "Opcion: ";
+        chomp($op = <STDIN>);
+
+        if ($op eq '1') {
+            $estado->inventario->generar_dot("reporte_inventario.dot");
+        } elsif ($op eq '2') {
+            $estado->solicitudes->generar_dot("reporte_solicitudes.dot");
+        } elsif ($op eq '3') {
+            $estado->proveedores->generar_dot("reporte_proveedores.dot");
+        } elsif ($op eq '4') {
+            $estado->matriz->generar_dot("reporte_matriz.dot");
+        } elsif ($op eq '0') { }
+        else { print "Opcion invalida.\n" }
+
+    } while ($op ne '0');
+}
+
+# ---------------------------------------------------------------
+# HELPERS
+# ---------------------------------------------------------------
+sub _mostrar_medicamento {
+    my ($m) = @_;
+    if (!$m) {
+        print "Medicamento no encontrado.\n";
+        return;
     }
-    $listaSolicitudes->eliminar_primera();
+    print "\n" . $m->to_string() . "\n";
+}
+
+sub _trim {
+    my ($v) = @_;
+    return '' unless defined $v;
+    $v =~ s/^\s+|\s+$//g;
+    return $v;
 }
 
 1;

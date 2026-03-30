@@ -5,55 +5,47 @@ use warnings;
 use FindBin;
 use lib "$FindBin::Bin/model";
 use lib "$FindBin::Bin/controller";
-use lib "$FindBin::Bin/reports";
 
 use AdminController;
 use UsuarioController;
-use ProveedorController;
-use ReporteInventario;
-use ReporteSolicitudes;
-use ReporteProveedores;
 
-sub menu_principal {
-    print "\n=== EDD MedTrack ===\n";
-    print "1. Administrador\n";
-    print "2. Usuario Departamental\n";
-    print "0. Salir\n";
-    print "Seleccione una opcion: ";
-}
+# Credenciales del administrador
+my $ADMIN_USER = 'admin';
+my $ADMIN_PASS = 'admin123';
 
-my $opcion;
+# ---------------------------------------------------------------
+# MENU PRINCIPAL
+# ---------------------------------------------------------------
+my $opcion = '';
 do {
-    menu_principal();
+    print "\n" . "=" x 40 . "\n";
+    print "        EDD MedTrack - Fase 1\n";
+    print "=" x 40 . "\n";
+    print "1. Iniciar sesion como Administrador\n";
+    print "2. Iniciar sesion como Usuario Departamental\n";
+    print "0. Salir\n";
+    print "Opcion: ";
     chomp($opcion = <STDIN>);
 
-    if ($opcion == 1) {
-        AdminController::menu_admin();
-    }
-    elsif ($opcion == 2) {
-        UsuarioController::menu_usuario();
-    }
-    elsif ($opcion == 0) {
-        print "Saliendo del sistema...\n";
-    }
-    else {
-        print "Opcion invalida\n";
-    }
-} while ($opcion != 0);
+    if ($opcion eq '1') {
+        print "Usuario: ";    chomp(my $user = <STDIN>);
+        print "Contrasena: "; chomp(my $pass = <STDIN>);
 
-#prueba medicamento
+        if ($user eq $ADMIN_USER && $pass eq $ADMIN_PASS) {
+            print "Bienvenido, Administrador.\n";
+            AdminController::menu();
+        } else {
+            print "Credenciales incorrectas.\n";
+        }
 
-use Medicamento;
- 
-my $m = Medicamento->new({
-    codigo => 'MED001',
-    nombre => 'Paracetamol',
-    principioActivo => 'Paracetamol',
-    laboratorio => 'Lab A',
-    cantidad => 100,
-    fechaVencimiento => '2025-12-31',
-    precio => 10.5,
-    nivelMinimo => 20,
-});
-print "Codigo: " . $m->get_codigo() . "\n";
-print "bajo stock? " . ($m->bajoStock() ? "Si" : "No") . "\n";
+    } elsif ($opcion eq '2') {
+        UsuarioController::menu();
+
+    } elsif ($opcion eq '0') {
+        print "Hasta luego.\n";
+
+    } else {
+        print "Opcion invalida.\n";
+    }
+
+} while ($opcion ne '0');
