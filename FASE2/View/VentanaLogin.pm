@@ -1,15 +1,10 @@
 package VentanaLogin;
 use strict;
 use warnings;
-
+use utf8;
+use open ':std', ':encoding(UTF-8)';
 use Gtk3 -init;
-use Glib::Object::Introspection;
 
-Glib::Object::Introspection->setup(
-    basename => 'Gdk',
-    version  => '3.0',
-    package  => 'Gdk3'
-);
 
 
 use Estado;
@@ -48,11 +43,12 @@ sub _construir {
         notebook tab { background-color: #2c3e6b; color: white; padding: 6px 12px; }
         notebook tab:checked { background-color: #e67e22; }
     ');
-    Gtk3::StyleContext::add_provider_for_display(
-        Gdk3::Display->get_default(),
-        $css,
-        Gtk3::STYLE_PROVIDER_PRIORITY_APPLICATION
-    );
+    my $screen = Gtk3::Gdk::Screen::get_default();
+Gtk3::StyleContext::add_provider_for_screen(
+    $screen,
+    $css,
+    Gtk3::STYLE_PROVIDER_PRIORITY_APPLICATION
+);
 
     # Layout principal
     my $vbox = Gtk3::Box->new('vertical', 0);

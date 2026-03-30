@@ -1,7 +1,9 @@
 package VentanaUsuario;
 use strict;
 use warnings;
-use Gtk3;
+use utf8;
+use open ':std', ':encoding(UTF-8)';
+use Gtk3 -init;
 use Estado;
 
 sub nueva {

@@ -9,43 +9,26 @@ use ArbolBST;
 use ArbolAVL;
 use ArbolB;
 
-# ---------------------------------------------------------------
-# SINGLETON - una sola instancia compartida por toda la app
-# ---------------------------------------------------------------
 my $instancia;
 
 sub get_instancia {
     my ($class) = @_;
     unless (defined $instancia) {
         $instancia = bless {
-            # Estructuras FASE1 que continuan
-            medicamentos => ListaDoble->new(),          # MED - lista doble
-
-            # Estructuras FASE2 nuevas
-            equipos      => ArbolBST->new(),            # EQU - BST
-            suministros  => ArbolB->new(),              # SUM - Arbol B ord 4
-            usuarios     => ArbolAVL->new(),            # personal medico - AVL
-
-            # Lista circular doble de proveedores (actualizada FASE2)
-            proveedores  => ListaCircularDoble->new(),
-
-            # Matriz dispersa: proveedor (fila) x fabricante (columna)
-            matriz       => MatrizDispersa->new(),
-
-            # Usuario logueado actualmente
-            usuario_actual => undef,  # objeto Usuario o undef
+            medicamentos   => ListaDoble->new(),
+            equipos        => ArbolBST->new(),
+            suministros    => ArbolB->new(),
+            usuarios       => ArbolAVL->new(),
+            proveedores    => ListaCircularDoble->new(),
+            matriz         => MatrizDispersa->new(),
+            usuario_actual => undef,
             es_admin       => 0,
-
-            # Directorio base para reportes
-            dir_reportes => 'reports',
+            dir_reportes   => 'reports',
         }, $class;
     }
     return $instancia;
 }
 
-# ---------------------------------------------------------------
-# Accesores rapidos
-# ---------------------------------------------------------------
 sub medicamentos { $_[0]->{medicamentos} }
 sub equipos      { $_[0]->{equipos}      }
 sub suministros  { $_[0]->{suministros}  }
@@ -64,31 +47,22 @@ sub dir_reportes {
     return $self->{dir_reportes};
 }
 
-# ---------------------------------------------------------------
-# CARGAR JSON de inventario (formato FASE2)
-# Distribuye items segun tipo: MEDICAMENTO, EQUIPO, SUMINISTRO
-# ---------------------------------------------------------------
 sub cargar_json_inventario {
     my ($self, $ruta) = @_;
+
     unless (-e $ruta) {
         return (0, 0, "Archivo no encontrado: $ruta");
     }
 
-    eval { require JSON::PP } or do {
-        eval { require JSON } or return (0, 0, "Modulo JSON no disponible. Instala con: cpan JSON::PP");
-    };
-
-    open my $fh, '<:encoding(UTF-8)', $ruta or return (0, 0, "No se pudo abrir el archivo");
+    open my $fh, '<:encoding(UTF-8)', $ruta
+        or return (0, 0, "No se pudo abrir el archivo");
     my $contenido = do { local $/; <$fh> };
     close $fh;
 
+    require JSON::PP;
     my $data;
-    eval { $data = JSON::PP::decode_json($contenido) };
-    if ($@) {
-        # intento con JSON si JSON::PP fallo
-        eval { $data = JSON::decode_json($contenido) };
-        return (0, 0, "Error parseando JSON: $@") if $@;
-    }
+    eval { $data = JSON::PP->new->decode($contenido) };
+    return (0, 0, "Error parseando JSON: $@") if $@;
 
     my $proveedores_arr = $data->{proveedor} // [];
     my ($insertados, $omitidos) = (0, 0);
@@ -101,14 +75,13 @@ sub cargar_json_inventario {
         my $fecha    = $prov_data->{fecha_entrega}   // '';
         my $factura  = $prov_data->{numero_factura}  // '';
 
-        # Registrar proveedor en la lista circular doble
         my $prov_obj = $self->proveedores->buscar_por_nit($nit);
         unless ($prov_obj) {
             require Proveedor;
             $prov_obj = Proveedor->new({
-                nit      => $nit,
-                nombre   => $nombre,
-                telefono => $telefono,
+                nit       => $nit,
+                nombre    => $nombre,
+                telefono  => $telefono,
                 direccion => $dir,
             });
             $self->proveedores->agregar($prov_obj);
@@ -116,19 +89,18 @@ sub cargar_json_inventario {
 
         my @items_entrega;
         for my $item (@{ $prov_data->{entrega} // [] }) {
-            my $tipo    = uc($item->{tipo}    // '');
-            my $codigo  = $item->{codigo}     // '';
-            my $nom_item = $item->{nombre}    // '';
-            my $fab     = $item->{fabricante} // '';
-            my $precio  = $item->{precio_unitario} // 0;
-            my $cant    = $item->{cantidad}   // 0;
-            my $nivel   = $item->{nivel_minimo} // 0;
+            my $tipo     = uc($item->{tipo}          // '');
+            my $codigo   = $item->{codigo}           // '';
+            my $nom_item = $item->{nombre}           // '';
+            my $fab      = $item->{fabricante}       // '';
+            my $precio   = $item->{precio_unitario}  // 0;
+            my $cant     = $item->{cantidad}         // 0;
+            my $nivel    = $item->{nivel_minimo}     // 0;
 
             unless ($codigo && $cant > 0) { $omitidos++; next }
 
             push @items_entrega, { tipo => $tipo, codigo => $codigo, cantidad => $cant };
 
-            # Actualizar matriz dispersa: proveedor x fabricante
             $self->matriz->insertar($nombre, $fab, $cant) if $fab;
 
             if ($tipo eq 'MEDICAMENTO') {
@@ -188,12 +160,12 @@ sub cargar_json_inventario {
                     $self->suministros->insertar($sum);
                 }
                 $insertados++;
+
             } else {
                 $omitidos++;
             }
         }
 
-        # Registrar entrega en el historial del proveedor
         $prov_obj->agregar_entrega({
             fecha   => $fecha,
             factura => $factura,
@@ -204,27 +176,22 @@ sub cargar_json_inventario {
     return ($insertados, $omitidos, undef);
 }
 
-# ---------------------------------------------------------------
-# CARGAR JSON de usuarios
-# ---------------------------------------------------------------
 sub cargar_json_usuarios {
     my ($self, $ruta) = @_;
+
     unless (-e $ruta) {
         return (0, 0, "Archivo no encontrado: $ruta");
     }
 
-    eval { require JSON::PP } or eval { require JSON };
-
-    open my $fh, '<:encoding(UTF-8)', $ruta or return (0, 0, "No se pudo abrir");
+    open my $fh, '<:encoding(UTF-8)', $ruta
+        or return (0, 0, "No se pudo abrir");
     my $contenido = do { local $/; <$fh> };
     close $fh;
 
+    require JSON::PP;
     my $data;
-    eval { $data = JSON::PP::decode_json($contenido) };
-    if ($@) {
-        eval { $data = JSON::decode_json($contenido) };
-        return (0, 0, "Error JSON: $@") if $@;
-    }
+    eval { $data = JSON::PP->new->decode($contenido) };
+    return (0, 0, "Error JSON: $@") if $@;
 
     my ($insertados, $omitidos) = (0, 0);
     require Usuario;

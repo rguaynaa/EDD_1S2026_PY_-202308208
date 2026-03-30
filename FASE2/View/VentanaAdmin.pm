@@ -1,7 +1,9 @@
 package VentanaAdmin;
 use strict;
 use warnings;
-use Gtk3;
+use utf8;
+use open ':std', ':encoding(UTF-8)';
+use Gtk3 -init;
 use Estado;
 
 sub nueva {
@@ -261,7 +263,7 @@ sub _tab_equipos {
 
     my $entry = Gtk3::Entry->new(); $entry->set_placeholder_text('Código equipo...');
     my $btn_add = Gtk3::Button->new('+ Agregar');
-    my $btn_bus = Gtk3::Button->new('🔍 Buscar');
+    my $btn_bus = Gtk3::Button->new(' Buscar');
     my $btn_del = Gtk3::Button->new('✕ Eliminar');
     my $btn_rec = Gtk3::Button->new('↕ Recorridos');
     my $btn_ref = Gtk3::Button->new('↻');
@@ -366,7 +368,7 @@ sub _tab_suministros {
 
     my $entry = Gtk3::Entry->new(); $entry->set_placeholder_text('Código suministro...');
     my $btn_add = Gtk3::Button->new('+ Agregar');
-    my $btn_bus = Gtk3::Button->new('🔍 Buscar');
+    my $btn_bus = Gtk3::Button->new(' Buscar');
     my $btn_del = Gtk3::Button->new('✕ Eliminar');
     my $btn_ref = Gtk3::Button->new('↻');
     $hbox->pack_start($btn_add,0,0,0); $hbox->pack_start($entry,0,0,0);
