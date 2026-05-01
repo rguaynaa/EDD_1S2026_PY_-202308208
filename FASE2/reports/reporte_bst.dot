@@ -1,0 +1,28 @@
+digraph ArbolBST {
+  node [shape=record fontname=Arial fontsize=10];
+  edge [arrowhead=vee];
+
+  "051" [label="{051 | Camilla | Cant: 10}" style=filled,fillcolor=lightgreen];
+  "020" [label="{020 | Monitor | Cant: 15}" style=filled,fillcolor=lightgreen];
+  "051" -> "020" [label="L"];
+  "001" [label="{001 | Jeringas | Cant: 100}" style=filled,fillcolor=lightgreen];
+  "020" -> "001" [label="L"];
+  "003" [label="{003 | Bomba Infusión | Cant: 8}" style=filled,fillcolor=lightgreen];
+  "001" -> "003" [label="R"];
+  "005" [label="{005 | Electrocardiógrafo | Cant: 4}" style=filled,fillcolor=lightgreen];
+  "003" -> "005" [label="R"];
+  "006" [label="{006 | Autoclave | Cant: 5}" style=filled,fillcolor=lightgreen];
+  "005" -> "006" [label="R"];
+  "018" [label="{018 | Bandeja | Cant: 90}" style=filled,fillcolor=lightgreen];
+  "006" -> "018" [label="R"];
+  "010" [label="{010 | Silla de Ruedas | Cant: 9}" style=filled,fillcolor=lightgreen];
+  "018" -> "010" [label="L"];
+  "008" [label="{008 | tijeras quirurgicas | Cant: 25}" style=filled,fillcolor=lightgreen];
+  "010" -> "008" [label="L"];
+  "048" [label="{048 | Drenaje Pos operatorio | Cant: 15}" style=filled,fillcolor=lightgreen];
+  "020" -> "048" [label="R"];
+  "073" [label="{073 | Estetoscopios | Cant: 5}" style=filled,fillcolor=lightgreen];
+  "051" -> "073" [label="R"];
+  "078" [label="{078 | Desfibrilador | Cant: 20}" style=filled,fillcolor=lightgreen];
+  "073" -> "078" [label="R"];
+}

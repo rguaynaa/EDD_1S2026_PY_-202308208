@@ -1,0 +1,28 @@
+digraph ArbolAVL {
+  node [shape=ellipse fontname=Arial fontsize=9];
+  edge [arrowhead=vee];
+
+  "COL-00020" [label="COL-00020\nRootberto Raiz\nTIPO-03 | DEP-MED" style=filled fillcolor=lightblue];
+  "COL-00006" [label="COL-00006\nSolito mequede\nTIPO-02 | DEP-CIR" style=filled fillcolor=lightblue];
+  "COL-00020" -> "COL-00006" [label="L"];
+  "COL-00003" [label="COL-00003\nCarmen López\nTIPO-03 | DEP-CIR" style=filled fillcolor=lightyellow];
+  "COL-00006" -> "COL-00003" [label="L"];
+  "COL-00005" [label="COL-00005\nCasiano fuentes\nTIPO-04 | DEP-LAB" style=filled fillcolor=lightblue];
+  "COL-00003" -> "COL-00005" [label="R"];
+  "COL-00018" [label="COL-00018\nYano Salomon\nTIPO-02 | DEP-CIR" style=filled fillcolor=lightyellow];
+  "COL-00006" -> "COL-00018" [label="R"];
+  "COL-00010" [label="COL-00010\nBruce willis\nTIPO-04 | DEP-LAB" style=filled fillcolor=lightblue];
+  "COL-00018" -> "COL-00010" [label="L"];
+  "COL-00073" [label="COL-00073\nBenito doctor\nTIPO-01 | DEP-MED" style=filled fillcolor=lightblue];
+  "COL-00020" -> "COL-00073" [label="R"];
+  "COL-00051" [label="COL-00051\nAna Ramírez\nTIPO-01 | DEP-MED" style=filled fillcolor=lightyellow];
+  "COL-00073" -> "COL-00051" [label="L"];
+  "COL-00048" [label="COL-00048\nJose Jose\nTIPO-03 | DEP-FAR" style=filled fillcolor=lightblue];
+  "COL-00051" -> "COL-00048" [label="L"];
+  "COL-00089" [label="COL-00089\nMaximo Derecho\nTIPO-03 | DEP-CIR" style=filled fillcolor=lightblue];
+  "COL-00073" -> "COL-00089" [label="R"];
+  "COL-00078" [label="COL-00078\nLuis miguel\nTIPO-04 | DEP-LAB" style=filled fillcolor=lightblue];
+  "COL-00089" -> "COL-00078" [label="L"];
+  "COL-123" [label="COL-123\nCalificacion\nTIPO-04 | DEP-MED" style=filled fillcolor=lightblue];
+  "COL-00089" -> "COL-123" [label="R"];
+}

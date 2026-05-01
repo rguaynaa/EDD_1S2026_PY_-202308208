@@ -1,0 +1,60 @@
+digraph MatrizDispersa {
+  rankdir=LR;
+  node [fontname=Arial fontsize=9];
+
+  // fabricantes (columnas)
+  col_ACME_S_A_ [label="ACME S.A." shape=rectangle style=filled fillcolor=lightblue];
+  col_CardioTech [label="CardioTech" shape=rectangle style=filled fillcolor=lightblue];
+  col_DeTodo [label="DeTodo" shape=rectangle style=filled fillcolor=lightblue];
+  col_MediFlow [label="MediFlow" shape=rectangle style=filled fillcolor=lightblue];
+  col_SafeMed [label="SafeMed" shape=rectangle style=filled fillcolor=lightblue];
+  col_UltraMed [label="UltraMed" shape=rectangle style=filled fillcolor=lightblue];
+  col_errorControlado__ [label="errorControlado??" shape=rectangle style=filled fillcolor=lightblue];
+  col_errorCrontrolado__ [label="errorCrontrolado??" shape=rectangle style=filled fillcolor=lightblue];
+
+  // proveedores (filas) y valores
+  row_Camerun_Sal [label="Camerun Sal" shape=rectangle style=filled fillcolor=lightyellow];
+  v_Camerun_Sal_UltraMed [label="Cant:\n375" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Camerun_Sal -> v_Camerun_Sal_UltraMed;
+  v_Camerun_Sal_UltraMed -> col_UltraMed;
+  v_Camerun_Sal_errorCrontrolado__ [label="Cant:\n200" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Camerun_Sal -> v_Camerun_Sal_errorCrontrolado__;
+  v_Camerun_Sal_errorCrontrolado__ -> col_errorCrontrolado__;
+  v_Camerun_Sal_errorControlado__ [label="Cant:\n10" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Camerun_Sal -> v_Camerun_Sal_errorControlado__;
+  v_Camerun_Sal_errorControlado__ -> col_errorControlado__;
+  v_Camerun_Sal_DeTodo [label="Cant:\n9" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Camerun_Sal -> v_Camerun_Sal_DeTodo;
+  v_Camerun_Sal_DeTodo -> col_DeTodo;
+  v_Camerun_Sal_MediFlow [label="Cant:\n5000" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Camerun_Sal -> v_Camerun_Sal_MediFlow;
+  v_Camerun_Sal_MediFlow -> col_MediFlow;
+  row_Juanito_Maravilla [label="Juanito Maravilla" shape=rectangle style=filled fillcolor=lightyellow];
+  v_Juanito_Maravilla_ACME_S_A_ [label="Cant:\n9458" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Juanito_Maravilla -> v_Juanito_Maravilla_ACME_S_A_;
+  v_Juanito_Maravilla_ACME_S_A_ -> col_ACME_S_A_;
+  row_Monito_Dinamita [label="Monito Dinamita" shape=rectangle style=filled fillcolor=lightyellow];
+  v_Monito_Dinamita_SafeMed [label="Cant:\n690" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Monito_Dinamita -> v_Monito_Dinamita_SafeMed;
+  v_Monito_Dinamita_SafeMed -> col_SafeMed;
+  v_Monito_Dinamita_MediFlow [label="Cant:\n510" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Monito_Dinamita -> v_Monito_Dinamita_MediFlow;
+  v_Monito_Dinamita_MediFlow -> col_MediFlow;
+  row_Pedrito_Alcachofa [label="Pedrito Alcachofa" shape=rectangle style=filled fillcolor=lightyellow];
+  v_Pedrito_Alcachofa_MediFlow [label="Cant:\n128" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Pedrito_Alcachofa -> v_Pedrito_Alcachofa_MediFlow;
+  v_Pedrito_Alcachofa_MediFlow -> col_MediFlow;
+  v_Pedrito_Alcachofa_DeTodo [label="Cant:\n2520" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Pedrito_Alcachofa -> v_Pedrito_Alcachofa_DeTodo;
+  v_Pedrito_Alcachofa_DeTodo -> col_DeTodo;
+  row_Tercio_Casi [label="Tercio Casi" shape=rectangle style=filled fillcolor=lightyellow];
+  v_Tercio_Casi_CardioTech [label="Cant:\n504" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Tercio_Casi -> v_Tercio_Casi_CardioTech;
+  v_Tercio_Casi_CardioTech -> col_CardioTech;
+  v_Tercio_Casi_DeTodo [label="Cant:\n2515" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Tercio_Casi -> v_Tercio_Casi_DeTodo;
+  v_Tercio_Casi_DeTodo -> col_DeTodo;
+  v_Tercio_Casi_ACME_S_A_ [label="Cant:\n4000" shape=ellipse style=filled fillcolor=lightgreen];
+  row_Tercio_Casi -> v_Tercio_Casi_ACME_S_A_;
+  v_Tercio_Casi_ACME_S_A_ -> col_ACME_S_A_;
+}
