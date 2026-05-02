@@ -3,5 +3,17 @@ digraph ListaDoble {
   node [shape=record fontname=Arial];
   edge [arrowhead=vee];
 
-  vacio [label="Lista vacia" shape=plaintext];
+  HEAD [label="HEAD" shape=plaintext];
+  "001" [label="{001 | Ibuprofeno | Cant: 3000 | Vence: 2027-12-31}" style=filled fillcolor=lightgreen];
+  "002" [label="{002 | Amoxicilina | Cant: 4000 | Vence: 2027-05-05}" style=filled fillcolor=lightgreen];
+  "003" [label="{003 | Paracetamol | Cant: 5000 | Vence: 2027-12-12}" style=filled fillcolor=lightgreen];
+
+  // flechas adelante
+  HEAD -> "001";
+  "001" -> "002";
+  "002" -> "003";
+
+  // flechas atras
+  "002" -> "001" [style=dashed color=gray];
+  "003" -> "002" [style=dashed color=gray];
 }

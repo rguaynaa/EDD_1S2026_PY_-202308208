@@ -193,7 +193,7 @@ sub generar_dot {
     close $fh;
 
     (my $png = $archivo) =~ s/\.dot$/.png/;
-    system("dot -Tpng \"$archivo\" -o \"$png\" 2>/dev/null");
+   system("dot -Tpng \"$archivo\" -o \"$png\" 2>/dev/null");
     print "Reporte BST generado: $png\n";
     return $png;
 }

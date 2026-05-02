@@ -224,8 +224,10 @@ sub generar_dot {
     # Generar PNG con Graphviz
     my $png = $archivo;
     $png =~ s/\.dot$/.png/;
-    system("dot -Tpng $archivo -o $png");
+    system("dot -Tpng \"$archivo\" -o \"$png\" 2>/dev/null");
     print "Reporte generado: $png\n";
+
+    return $png;
 }
 
 1;

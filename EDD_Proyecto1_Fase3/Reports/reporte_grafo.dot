@@ -1,0 +1,58 @@
+graph RedColaboracion {
+  layout=sfdp;
+  overlap=prism;
+  sep="+20";
+  splines=true;
+  node [shape=ellipse fontname=Arial fontsize=8];
+  edge [style=solid];
+
+  "COL-00001" [label="COL-00001\nCesar\nDEP-MED | TIPO-01" style=filled fillcolor="lightblue"];
+  "COL-00003" [label="COL-00003\nMarty McFly\nDEP-CIR | TIPO-02" style=filled fillcolor="lightgreen"];
+  "COL-00009" [label="COL-00009\nJohn McClane\nDEP-CIR | TIPO-02" style=filled fillcolor="lightgreen"];
+  "COL-00012" [label="COL-00012\nEduardo Manostijeras\nDEP-LAB | TIPO-04" style=filled fillcolor="lightsalmon"];
+  "COL-00013" [label="COL-00013\nKatnis Everdeen\nDEP-CIR | TIPO-03" style=filled fillcolor="lightgreen"];
+  "COL-00023" [label="COL-00023\nPatrick Bateman\nDEP-CIR | TIPO-02" style=filled fillcolor="lightgreen"];
+  "COL-00027" [label="COL-00027\nNate Jacobs\nDEP-LAB | TIPO-04" style=filled fillcolor="lightsalmon"];
+  "COL-00028" [label="COL-00028\nWalter White\nSIN-DEP | TIPO-02" style=filled fillcolor="lightgray"];
+  "COL-00029" [label="COL-00029\nAnnie Wilkes\nDEP-LAB | TIPO-04" style=filled fillcolor="lightsalmon"];
+  "COL-00031" [label="COL-00031\nJack Torrance\nDEP-FAR | TIPO-03" style=filled fillcolor="plum"];
+  "COL-00033" [label="COL-00033\nTyler Durden\nDEP-FAR | TIPO-03" style=filled fillcolor="plum"];
+  "COL-00045" [label="COL-00045\nFrank Drebin\nDEP-CIR | TIPO-03" style=filled fillcolor="lightgreen"];
+  "COL-00056" [label="COL-00056\nMatilda\nDEP-MED | TIPO-03" style=filled fillcolor="lightblue"];
+  "COL-00077" [label="COL-00077\nJames Bond\nDEP-MED | TIPO-01" style=filled fillcolor="lightblue"];
+  "COL-00078" [label="COL-00078\nHermione Granger\nDEP-FAR | TIPO-03" style=filled fillcolor="plum"];
+  "COL-00111" [label="COL-00111\nSarah Connor\nDEP-MED | TIPO-01" style=filled fillcolor="lightblue"];
+  "COL-00112" [label="COL-00112\nNeo\nDEP-MED | TIPO-03" style=filled fillcolor="lightblue"];
+  "COL-00115" [label="COL-00115\nTony soprano\nDEP-LAB | TIPO-04" style=filled fillcolor="lightsalmon"];
+  "COL-00118" [label="COL-00118\nAmélie\nDEP-CIR | TIPO-02" style=filled fillcolor="lightgreen"];
+  "COL-00124" [label="COL-00124\nCarrie White\nDEP-CIR | TIPO-02" style=filled fillcolor="lightgreen"];
+  "COL-00125" [label="COL-00125\nDominic Toretto\nSIN-DEP | TIPO-03" style=filled fillcolor="lightgray"];
+  "COL-00212" [label="COL-00212\nMaximus Decimus Meridius\nDEP-MED | TIPO-01" style=filled fillcolor="lightblue"];
+  "COL-00337" [label="COL-00337\nRyland Grace\nSIN-DEP | TIPO-04" style=filled fillcolor="lightgray"];
+
+  "COL-00001" -- "COL-00112";
+  "COL-00001" -- "COL-00013";
+  "COL-00003" -- "COL-00027";
+  "COL-00009" -- "COL-00013";
+  "COL-00009" -- "COL-00124";
+  "COL-00012" -- "COL-00031";
+  "COL-00013" -- "COL-00111";
+  "COL-00023" -- "COL-00033";
+  "COL-00023" -- "COL-00112";
+  "COL-00027" -- "COL-00118";
+  "COL-00029" -- "COL-00112";
+  "COL-00029" -- "COL-00056";
+  "COL-00029" -- "COL-00212";
+  "COL-00029" -- "COL-00078";
+  "COL-00031" -- "COL-00077";
+  "COL-00031" -- "COL-00118";
+  "COL-00033" -- "COL-00118";
+  "COL-00045" -- "COL-00118";
+  "COL-00045" -- "COL-00112";
+  "COL-00056" -- "COL-00077";
+  "COL-00077" -- "COL-00115";
+  "COL-00077" -- "COL-00124";
+  "COL-00078" -- "COL-00115";
+  "COL-00115" -- "COL-00212";
+  "COL-00118" -- "COL-00124";
+}

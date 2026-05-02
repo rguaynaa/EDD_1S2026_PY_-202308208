@@ -200,9 +200,12 @@ sub generar_dot {
         print "No se pudo crear $archivo\n"; return;
     };
 
-    print $fh "graph RedColaboracion {\n";
-    print $fh "  layout=neato;\n";
-    print $fh "  node [shape=ellipse fontname=Arial fontsize=9];\n";
+   print $fh "graph RedColaboracion {\n";
+    print $fh "  layout=sfdp;\n";                # sfdp maneja mucho mejor grafos densos
+    print $fh "  overlap=prism;\n";               # reduce solapamiento
+    print $fh "  sep=\"+20\";\n";                 # aumenta separación entre nodos
+    print $fh "  splines=true;\n";                # aristas curvas, más legibles
+    print $fh "  node [shape=ellipse fontname=Arial fontsize=8];\n";  # fuente un poco más pequeña
     print $fh "  edge [style=solid];\n\n";
 
     # Nodos
