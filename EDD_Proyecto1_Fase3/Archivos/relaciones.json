@@ -1,0 +1,167 @@
+[
+    {
+        "solicitante": "COL-00001",
+        "receptor": "COL-00112",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00001",
+        "receptor": "COL-00013",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00112",
+        "receptor": "COL-00029",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00013",
+        "receptor": "COL-00111",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00013",
+        "receptor": "COL-00009",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00029",
+        "receptor": "COL-00056",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00029",
+        "receptor": "COL-00212",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00078",
+        "receptor": "COL-00115",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00031",
+        "receptor": "COL-00077",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00031",
+        "receptor": "COL-00118",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00009",
+        "receptor": "COL-00124",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00056",
+        "receptor": "COL-00077",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00212",
+        "receptor": "COL-00115",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00023",
+        "receptor": "COL-00033",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00045",
+        "receptor": "COL-00118",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00115",
+        "receptor": "COL-00077",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00033",
+        "receptor": "COL-00118",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00077",
+        "receptor": "COL-00124",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00118",
+        "receptor": "COL-00027",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00118",
+        "receptor": "COL-00124",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00027",
+        "receptor": "COL-00003",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00012",
+        "receptor": "COL-00031",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00078",
+        "receptor": "COL-00029",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00112",
+        "receptor": "COL-00023",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00045",
+        "receptor": "COL-00112",
+        "estado": "ACTIVA"
+    },
+    {
+        "solicitante": "COL-00023",
+        "receptor": "COL-00001",
+        "estado": "PENDIENTE"
+    },
+    {
+        "solicitante": "COL-00013",
+        "receptor": "COL-00112",
+        "estado": "PENDIENTE"
+    },
+    {
+        "solicitante": "COL-00009",
+        "receptor": "COL-00077",
+        "estado": "PENDIENTE"
+    },
+    {
+        "solicitante": "COL-00009",
+        "receptor": "COL-00077",
+        "estado": "PENDIENTE"
+    },
+    {
+        "solicitante": "COL-00118",
+        "receptor": "COL-00077",
+        "estado": "PENDIENTE"
+    },
+    {
+        "solicitante": "COL-00012",
+        "receptor": "COL-00112",
+        "estado": "PENDIENTE"
+    },
+    {
+        "solicitante": "COL-00111",
+        "receptor": "COL-00029",
+        "estado": "PENDIENTE"
+    },
+    {
+        "solicitante": "COL-00111",
+        "receptor": "COL-00001",
+        "estado": "PENDIENTE"
+    }
+]

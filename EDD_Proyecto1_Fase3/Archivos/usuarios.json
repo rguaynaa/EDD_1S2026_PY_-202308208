@@ -1,0 +1,188 @@
+{
+    "usuarios": [
+      {
+        "numero_colegio": "COL-00001",
+        "nombre_completo": "Cesar",
+        "tipo_usuario": "TIPO-01",
+        "departamento": "DEP-MED",
+        "especialidad": "Piloto cirujano",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00112",
+        "nombre_completo": "Neo",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "DEP-MED",
+        "especialidad": "Pediatria",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00003",
+        "nombre_completo": "Marty McFly",
+        "tipo_usuario": "TIPO-02",
+        "departamento": "DEP-CIR",
+        "especialidad": "Cirugia General",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00013",
+        "nombre_completo": "Katnis Everdeen",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "DEP-CIR",
+        "especialidad": "Ortopedia",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00029",
+        "nombre_completo": "Annie Wilkes",
+        "tipo_usuario": "TIPO-04",
+        "departamento": "DEP-LAB",
+        "especialidad": "Quimica Clinica",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00012",
+        "nombre_completo": "Eduardo Manostijeras",
+        "tipo_usuario": "TIPO-04",
+        "departamento": "DEP-LAB",
+        "especialidad": "Inmunologia",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00078",
+        "nombre_completo": "Hermione Granger",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "DEP-FAR",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00031",
+        "nombre_completo": "Jack Torrance",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "DEP-FAR",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00111",
+        "nombre_completo": "Sarah Connor",
+        "tipo_usuario": "TIPO-01",
+        "departamento": "DEP-MED",
+        "especialidad": "Dermatologia",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00009",
+        "nombre_completo": "John McClane",
+        "tipo_usuario": "TIPO-02",
+        "departamento": "DEP-CIR",
+        "especialidad": "Neurocirugia",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00056",
+        "nombre_completo": "Matilda",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "DEP-MED",
+        "especialidad": "Mentes",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00212",
+        "nombre_completo": "Maximus Decimus Meridius",
+        "tipo_usuario": "TIPO-01",
+        "departamento": "DEP-MED",
+        "especialidad": "Cortes de cirugía",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00023",
+        "nombre_completo": "Patrick Bateman",
+        "tipo_usuario": "TIPO-02",
+        "departamento": "DEP-CIR",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00045",
+        "nombre_completo": "Frank Drebin",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "DEP-CIR",
+        "especialidad": "Traumatologia",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00115",
+        "nombre_completo": "Tony soprano",
+        "tipo_usuario": "TIPO-04",
+        "departamento": "DEP-LAB",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00033",
+        "nombre_completo": "Tyler Durden",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "DEP-FAR",
+        "especialidad": "psicologia",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00077",
+        "nombre_completo": "James Bond",
+        "tipo_usuario": "TIPO-01",
+        "departamento": "DEP-MED",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00118",
+        "nombre_completo": "Amélie",
+        "tipo_usuario": "TIPO-02",
+        "departamento": "DEP-CIR",
+        "especialidad": "Cirugia Plastica",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00027",
+        "nombre_completo": "Nate Jacobs",
+        "tipo_usuario": "TIPO-04",
+        "departamento": "DEP-LAB",
+        "especialidad": "Microbiologia",
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00124",
+        "nombre_completo": "Carrie White",
+        "tipo_usuario": "TIPO-02",
+        "departamento": "DEP-CIR",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00337",
+        "nombre_completo": "Ryland Grace",
+        "tipo_usuario": "TIPO-04",
+        "departamento": "SIN-DEP",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00125",
+        "nombre_completo": "Dominic Toretto",
+        "tipo_usuario": "TIPO-03",
+        "departamento": "SIN-DEP",
+        "especialidad": null,
+        "contrasena": "123abc"
+      },
+      {
+        "numero_colegio": "COL-00028",
+        "nombre_completo": "Walter White",
+        "tipo_usuario": "TIPO-02",
+        "departamento": "SIN-DEP",
+        "especialidad": null,
+        "contrasena": "123abc"
+      }
+    ]
+  }

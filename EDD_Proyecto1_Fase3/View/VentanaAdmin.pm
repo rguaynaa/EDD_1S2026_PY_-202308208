@@ -374,9 +374,9 @@ sub _tab_grafo_admin {
 
     my $ea = Gtk3::Entry->new(); $ea->set_placeholder_text('Colegio A...');
     my $eb = Gtk3::Entry->new(); $eb->set_placeholder_text('Colegio B...');
-    my $btn_add = Gtk3::Button->new('Añadir arista');
-    my $btn_del = Gtk3::Button->new('Quitar arista');
-    my $btn_ref = Gtk3::Button->new('Refrescar');
+    my $btn_add = Gtk3::Button->new('+ Añadir arista');
+    my $btn_del = Gtk3::Button->new('✕ Quitar arista');
+    my $btn_ref = Gtk3::Button->new('↻ Refrescar');
 
     $hbox->pack_start(Gtk3::Label->new('A:'), 0,0,0);
     $hbox->pack_start($ea, 0,0,0);

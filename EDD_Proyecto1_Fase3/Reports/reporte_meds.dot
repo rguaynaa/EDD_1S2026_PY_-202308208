@@ -1,0 +1,7 @@
+digraph ListaDoble {
+  rankdir=LR;
+  node [shape=record fontname=Arial];
+  edge [arrowhead=vee];
+
+  vacio [label="Lista vacia" shape=plaintext];
+}

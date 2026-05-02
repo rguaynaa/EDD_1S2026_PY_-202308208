@@ -1,0 +1,397 @@
+{
+    "proveedor": [
+        {
+            "nit": "10000001-1",
+            "nombre": "Juanito Maravilla",
+            "telefono": "2233 4455",
+            "direccion": "Zona 1, Ciudad de Guatemala",
+            "fecha_entrega": "2026-03-10",
+            "numero_factura": "FAC-2026-01001",
+            "entrega": [
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "051",
+                    "nombre": "Camilla",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 1200.00,
+                    "cantidad": 10,
+                    "fecha_ingreso": "2026-03-10",
+                    "nivel_minimo": 2
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "017",
+                    "nombre": "Mascarillas",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 0.10,
+                    "cantidad": 3000,
+                    "fecha_vencimiento": "2028-05-01",
+                    "nivel_minimo": 500
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "084",
+                    "nombre": "tubos muestra",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 10,
+                    "cantidad": 38,
+                    "fecha_vencimiento": "2028-05-01",
+                    "nivel_minimo": 5
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "002",
+                    "nombre": "Gasas Estériles",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 0.05,
+                    "cantidad": 2000,
+                    "fecha_vencimiento": "2027-09-15",
+                    "nivel_minimo": 400
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "020",
+                    "nombre": "Monitor",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 2500.00,
+                    "cantidad": 5,
+                    "fecha_ingreso": "2026-03-10",
+                    "nivel_minimo": 1
+                },
+                {
+                    "tipo": "MEDICAMENTO",
+                    "codigo": "001",
+                    "nombre": "Ibuprofeno",
+                    "principio_activo": "Ibuprofeno",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 1.50,
+                    "cantidad": 3000,
+                    "fecha_vencimiento": "2027-12-31",
+                    "nivel_minimo": 500
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "001",
+                    "nombre": "Jeringas",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 1200.00,
+                    "cantidad": 100,
+                    "fecha_ingreso": "2026-03-10",
+                    "nivel_minimo": 50
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "024",
+                    "nombre": "Guantes",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 0.10,
+                    "cantidad": 300,
+                    "fecha_vencimiento": "2028-05-01",
+                    "nivel_minimo": 50
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "032",
+                    "nombre": "Curitas",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 0.75,
+                    "cantidad": 1000,
+                    "fecha_vencimiento": "2027-09-15",
+                    "nivel_minimo": 400
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "073",
+                    "nombre": "Estetoscopios",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 215.00,
+                    "cantidad": 5,
+                    "fecha_ingreso": "2026-03-10",
+                    "nivel_minimo": 1
+                }
+            ]
+        },
+        {
+            "nit": "10000002-2",
+            "nombre": "Pedrito Alcachofa",
+            "telefono": "2244 5566",
+            "direccion": "Zona 5, Ciudad de Guatemala",
+            "fecha_entrega": "2026-03-11",
+            "numero_factura": "FAC-2026-01002",
+            "entrega": [
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "003",
+                    "nombre": "Bomba Infusión",
+                    "fabricante": "MediFlow",
+                    "precio_unitario": 1830.00,
+                    "cantidad": 8,
+                    "fecha_ingreso": "2026-03-11",
+                    "nivel_minimo": 2
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "012",
+                    "nombre": "cateter",
+                    "fabricante": "DeTodo",
+                    "precio_unitario": 2.50,
+                    "cantidad": 1300,
+                    "fecha_vencimiento": "2028-02-01",
+                    "nivel_minimo": 400
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "004",
+                    "nombre": "Aguja",
+                    "fabricante": "DeTodo",
+                    "precio_unitario": 3.00,
+                    "cantidad": 200,
+                    "fecha_vencimiento": "2027-06-30",
+                    "nivel_minimo": 30
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "015",
+                    "nombre": "Andadera",
+                    "fabricante": "MediFlow",
+                    "precio_unitario": 120.00,
+                    "cantidad": 120,
+                    "fecha_vencimiento": "2028-05-01",
+                    "nivel_minimo": 50
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "078",
+                    "nombre": "Desfibrilador",
+                    "fabricante": "DeTodo",
+                    "precio_unitario": 500.00,
+                    "cantidad": 20,
+                    "fecha_ingreso": "2026-03-11",
+                    "nivel_minimo": 10
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "094",
+                    "nombre": "Vendas Elásticas",
+                    "fabricante": "DeTodo",
+                    "precio_unitario": 0.80,
+                    "cantidad": 1000,
+                    "fecha_vencimiento": "2029-01-01",
+                    "nivel_minimo": 200
+                }
+            ]
+        },
+        {
+            "nit": "10000003-3",
+            "nombre": "Tercio Casi",
+            "telefono": "2255 6677",
+            "direccion": "Zona 10, Ciudad de Guatemala",
+            "fecha_entrega": "2026-03-12",
+            "numero_factura": "FAC-2026-01003",
+            "entrega": [
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "005",
+                    "nombre": "Electrocardiógrafo",
+                    "fabricante": "CardioTech",
+                    "precio_unitario": 3200.00,
+                    "cantidad": 4,
+                    "fecha_ingreso": "2026-03-12",
+                    "nivel_minimo": 1
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "041",
+                    "nombre": "Jeringas 10ml",
+                    "fabricante": "DeTodo",
+                    "precio_unitario": 0.25,
+                    "cantidad": 2510,
+                    "fecha_vencimiento": "2028-08-20",
+                    "nivel_minimo": 400
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "011",
+                    "nombre": "Algodón Hidrófilo",
+                    "fabricante": "CardioTech",
+                    "precio_unitario": 1.20,
+                    "cantidad": 500,
+                    "fecha_vencimiento": "2027-11-11",
+                    "nivel_minimo": 80
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "006",
+                    "nombre": "Autoclave",
+                    "fabricante": "DeTodo",
+                    "precio_unitario": 420.00,
+                    "cantidad": 5,
+                    "fecha_ingreso": "2026-03-12",
+                    "nivel_minimo": 1
+                },
+                {
+                    "tipo": "MEDICAMENTO",
+                    "codigo": "002",
+                    "nombre": "Amoxicilina",
+                    "principio_activo": "Amoxicilina",
+                    "fabricante": "ACME S.A.",
+                    "precio_unitario": 2.20,
+                    "cantidad": 4000,
+                    "fecha_vencimiento": "2027-05-05",
+                    "nivel_minimo": 600
+                }
+            ]
+        },
+        {
+            "nit": "10000004-4",
+            "nombre": "Monito Dinamita",
+            "telefono": "2266 7788",
+            "direccion": "Zona 7, Ciudad de Guatemala",
+            "fecha_entrega": "2026-03-13",
+            "numero_factura": "FAC-2026-01004",
+            "entrega": [
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "008",
+                    "nombre": "Batas Desechables",
+                    "fabricante": "SafeMed",
+                    "precio_unitario": 2.00,
+                    "cantidad": 150,
+                    "fecha_vencimiento": "2028-03-03",
+                    "nivel_minimo": 20
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "026",
+                    "nombre": "Gorros Quirúrgicas",
+                    "fabricante": "SafeMed",
+                    "precio_unitario": 0.10,
+                    "cantidad": 330,
+                    "fecha_vencimiento": "2028-05-01",
+                    "nivel_minimo": 51
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "089",
+                    "nombre": "Ballonetas",
+                    "fabricante": "MediFlow",
+                    "precio_unitario": 120.00,
+                    "cantidad": 10,
+                    "fecha_ingreso": "2026-03-13",
+                    "nivel_minimo": 3
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "100",
+                    "nombre": "Sueros",
+                    "fabricante": "MediFlow",
+                    "precio_unitario": 5.00,
+                    "cantidad": 500,
+                    "fecha_vencimiento": "2027-10-10",
+                    "nivel_minimo": 70
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "018",
+                    "nombre": "Bandeja",
+                    "fabricante": "SafeMed",
+                    "precio_unitario": 730.00,
+                    "cantidad": 90,
+                    "fecha_ingreso": "2026-03-13",
+                    "nivel_minimo": 10
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "091",
+                    "nombre": "Cintas Médicas",
+                    "fabricante": "SafeMed",
+                    "precio_unitario": 0.50,
+                    "cantidad": 120,
+                    "fecha_vencimiento": "2029-04-04",
+                    "nivel_minimo": 20
+                }
+            ]
+        },
+        {
+            "nit": "10000005-5",
+            "nombre": "Camerun Sal",
+            "telefono": "2277 8899",
+            "direccion": "Zona 12, Ciudad de Guatemala",
+            "fecha_entrega": "2026-03-14",
+            "numero_factura": "FAC-2026-01005",
+            "entrega": [
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "048",
+                    "nombre": "Drenaje Pos operatorio",
+                    "fabricante": "UltraMed",
+                    "precio_unitario": 163.00,
+                    "cantidad": 15,
+                    "fecha_ingreso": "2026-03-14",
+                    "nivel_minimo": 5
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "033",
+                    "nombre": "Muletas",
+                    "fabricante": "UltraMed",
+                    "precio_unitario": 140.00,
+                    "cantidad": 60,
+                    "fecha_vencimiento": "2028-07-07",
+                    "nivel_minimo": 10
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "012",
+                    "nombre": "ID repetido B",
+                    "fabricante": "errorCrontrolado??",
+                    "precio_unitario": 4.50,
+                    "cantidad": 200,
+                    "fecha_vencimiento": "2030-01-01",
+                    "nivel_minimo": 30
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "020",
+                    "nombre": "ID repetido en BST",
+                    "fabricante": "errorControlado??",
+                    "precio_unitario": 1200.00,
+                    "cantidad": 10,
+                    "fecha_ingreso": "2026-03-10",
+                    "nivel_minimo": 2
+                },
+                {
+                    "tipo": "SUMINISTRO",
+                    "codigo": "001",
+                    "nombre": "esparadrapo",
+                    "fabricante": "UltraMed",
+                    "precio_unitario": 2.50,
+                    "cantidad": 300,
+                    "fecha_vencimiento": "2028-05-01",
+                    "nivel_minimo": 20
+                },
+                {
+                    "tipo": "EQUIPO",
+                    "codigo": "010",
+                    "nombre": "Silla de Ruedas",
+                    "fabricante": "DeTodo",
+                    "precio_unitario": 900.00,
+                    "cantidad": 9,
+                    "fecha_ingreso": "2026-03-14",
+                    "nivel_minimo": 2
+                },
+                {
+                    "tipo": "MEDICAMENTO",
+                    "codigo": "003",
+                    "nombre": "Paracetamol",
+                    "principio_activo": "Paracetamol",
+                    "fabricante": "MediFlow",
+                    "precio_unitario": 1.80,
+                    "cantidad": 5000,
+                    "fecha_vencimiento": "2027-12-12",
+                    "nivel_minimo": 700
+                }
+            ]
+        }
+    ]
+}

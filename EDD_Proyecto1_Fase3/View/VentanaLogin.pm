@@ -11,7 +11,7 @@ use lib "$FindBin::Bin/model";
 use EstadoF3;
 
 use constant ADMIN_USER => 'AdminHospital';
-use constant ADMIN_PASS => 'MedTrack2026';   # F3: nueva contrasena
+use constant ADMIN_PASS => 'MedTrack2026';  
 
 sub nueva {
     my ($class) = @_;
@@ -49,13 +49,13 @@ sub _construir {
 
     # Header
     my $header = Gtk3::Label->new('');
-    $header->set_markup('<span foreground="white" size="x-large" weight="bold">🏥 EDD MEDTRACK F3</span>');
+    $header->set_markup('<span foreground="white" size="x-large" weight="bold">EDD MEDTRACK</span>');
     $header->set_margin_top(15);
     $header->set_margin_bottom(8);
     $vbox->pack_start($header, 0, 0, 0);
 
     my $sub = Gtk3::Label->new('');
-    $sub->set_markup('<span foreground="#e67e22" size="small">Trazabilidad · Rutas · Seguridad</span>');
+    $sub->set_markup('<span foreground="#ffffff" size="small"></span>');
     $sub->set_margin_bottom(5);
     $vbox->pack_start($sub, 0, 0, 0);
 
@@ -80,15 +80,15 @@ sub _tab_login {
     $vbox->set_margin_top(20);   $vbox->set_margin_bottom(20);
 
     my $logo = Gtk3::Label->new('');
-    $logo->set_markup('<span foreground="white" size="large">🏥 Hospital General San Carlos</span>');
+    $logo->set_markup('<span foreground="#000000" size="large">Hospital General San Carlos</span>');
     $vbox->pack_start($logo, 0, 0, 8);
 
     my $lbl = Gtk3::Label->new('');
-    $lbl->set_markup('<span foreground="white" size="large" weight="bold">LOGIN</span>');
+    $lbl->set_markup('<span foreground="#000000" size="large" weight="bold">LOGIN</span>');
     $vbox->pack_start($lbl, 0, 0, 4);
 
     my $lu = Gtk3::Label->new('');
-    $lu->set_markup('<span foreground="white">USUARIO</span>');
+    $lu->set_markup('<span foreground="#000000">USUARIO</span>');
     $lu->set_halign('start');
     $vbox->pack_start($lu, 0, 0, 0);
 
@@ -97,7 +97,7 @@ sub _tab_login {
     $vbox->pack_start($self->{entry_user}, 0, 0, 2);
 
     my $lp = Gtk3::Label->new('');
-    $lp->set_markup('<span foreground="white">CONTRASEÑA</span>');
+    $lp->set_markup('<span foreground="#000000">CONTRASEÑA</span>');
     $lp->set_halign('start');
     $vbox->pack_start($lp, 0, 0, 0);
 
@@ -132,7 +132,7 @@ sub _tab_registro {
     $vbox->set_margin_top(15);   $vbox->set_margin_bottom(15);
 
     my $titulo = Gtk3::Label->new('');
-    $titulo->set_markup('<span foreground="white" weight="bold" size="large">Registro de Usuario</span>');
+    $titulo->set_markup('<span foreground="#000000" weight="bold" size="large">Registro de Usuario</span>');
     $vbox->pack_start($titulo, 0, 0, 6);
 
     my $grid = Gtk3::Grid->new();
@@ -147,7 +147,7 @@ sub _tab_registro {
     );
     for my $i (0..$#campos) {
         my $lbl = Gtk3::Label->new('');
-        $lbl->set_markup("<span foreground='white'>$campos[$i][0]</span>");
+        $lbl->set_markup("<span foreground='#000000'>$campos[$i][0]</span>");
         $lbl->set_halign('start');
         $grid->attach($lbl, 0, $i, 1, 1);
         my $e = Gtk3::Entry->new();
@@ -158,7 +158,7 @@ sub _tab_registro {
 
     # Combo tipo
     my $lt = Gtk3::Label->new('');
-    $lt->set_markup("<span foreground='white'>Tipo usuario:</span>");
+    $lt->set_markup("<span foreground='#000000'>Tipo usuario:</span>");
     $lt->set_halign('start');
     $grid->attach($lt, 0, 4, 1, 1);
     $self->{reg_tipo} = Gtk3::ComboBoxText->new();
@@ -171,7 +171,7 @@ sub _tab_registro {
 
     # Combo departamento
     my $ld = Gtk3::Label->new('');
-    $ld->set_markup("<span foreground='white'>Departamento:</span>");
+    $ld->set_markup("<span foreground='#000000'>Departamento:</span>");
     $ld->set_halign('start');
     $grid->attach($ld, 0, 5, 1, 1);
     $self->{reg_dep} = Gtk3::ComboBoxText->new();
@@ -204,16 +204,11 @@ sub _tab_info {
 
     my $info = Gtk3::Label->new('');
     $info->set_markup(
-        "<span foreground='white' size='large' weight='bold'>EDD MedTrack - Fase 3</span>\n\n" .
-        "<span foreground='#aaaaaa'>Universidad San Carlos de Guatemala\n" .
+        "<span foreground='white' size='large' weight='bold'>EDD MedTrack</span>\n\n" .
+        "<span foreground='#000000'>Universidad San Carlos de Guatemala\n" .
         "Facultad de Ingeniería\n" .
         "Ingeniería en Ciencias y Sistemas\n\n" .
         "Estructuras de Datos - 1S 2026\n\n" .
-        "Nuevas estructuras:\n" .
-        "• Grafo No Dirigido (colaboración)\n" .
-        "• Tabla Hash (directorio por tipo)\n" .
-        "• Compresión LZW (mensajería)\n" .
-        "• Árbol de Merkle (trazabilidad)\n\n" .
         "Estudiante: #202308208 | Sección A</span>"
     );
     $info->set_justify('center');
